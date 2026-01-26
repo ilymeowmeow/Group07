@@ -1,7 +1,0 @@
-<Solution>
-  <Configurations>
-    <Platform Name="x64" />
-    <Platform Name="x86" />
-  </Configurations>
-  <Project Path="UserManagementSystem/UserManagementSystem.vcxproj" Id="b8f5e177-7e81-470b-b41f-abb21824b98f" />
-</Solution>
