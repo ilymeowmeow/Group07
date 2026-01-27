@@ -1,0 +1,25 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build (Group07)",
+      "type": "shell",
+      "command": "g++",
+      "args": [
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-g",
+        "src/main.cpp",
+        "src/AuthService.cpp",
+        "src/adminmodule.cpp",
+        "src/StudentView.cpp",
+        "src/Teacher.cpp",
+        "-o",
+        "src/output/main.exe"
+      ],
+      "problemMatcher": ["$gcc"],
+      "group": { "kind": "build", "isDefault": true }
+    }
+  ]
+}
