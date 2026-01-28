@@ -80,13 +80,13 @@ void AdminModule::deleteUser() {
         return;
     }
 
-    for (int i = 0; i < users.size(); i++) {
-        if (users[i].username == name) {
-            users.erase(users.begin() + i);
-            cout << "Deleted!\n";
-            return;
-        }
+for (size_t i = 0; i < users.size(); i++) {
+    if (users[i].username == name) {
+        users.erase(users.begin() + i);
+        cout << "Deleted!\n";
+        return;
     }
+}
     cout << "User not found!\n";
 }
 

@@ -1,33 +1,19 @@
 {
-  "version": "2.0.0",
-  "tasks": [
-    {
-      "label": "build cpp (all src)",
-      "type": "shell",
-      "command": "g++",
-      "args": [
-        "-std=c++17",
-        "-Wall",
-        "-Wextra",
-        "-g",
-        "src/main.cpp",
-        "src/AuthService.cpp",
-        "src/adminmodule.cpp",
-        "src/StudentView.cpp",
-        "src/Teacher.cpp",
-        "-o",
-        "src/output/main.exe"
-      ],
-      "problemMatcher": [
-        "$gcc"
-      ],
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      }
-    }
-  ],
+  "version": "0.2.0",
   "configurations": [
+    {
+      "name": "Run main.exe",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}\\src\\output\\main.exe",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": true,
+      "preLaunchTask": "build (g++)",
+      "MIMode": "gdb"
+    },
     {
       "name": "C/C++ Runner: Debug Session",
       "type": "cppdbg",
@@ -35,8 +21,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/ADMIN/Group07/Group07",
-      "program": "c:/Users/ADMIN/Group07/Group07/build/Debug/outDebug",
+      "cwd": "c:/Users/ADMIN/Group07/Group07/src",
+      "program": "c:/Users/ADMIN/Group07/Group07/src/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

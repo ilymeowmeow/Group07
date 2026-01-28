@@ -34,27 +34,22 @@ CourseNode* insertCourse(CourseNode* root, const string& courseID) {
 CourseNode* buildDemoCourses() {
     CourseNode* courseRoot = nullptr;
 
-    // Demo courses
     courseRoot = insertCourse(courseRoot, "CTDL");
     courseRoot = insertCourse(courseRoot, "DB");
     courseRoot = insertCourse(courseRoot, "OS");
-
-    // Demo attendance for each course
-    // OS
     if (CourseNode* os = findCourse(courseRoot, "OS")) {
         os->data.attendanceRoot = insertAttendance(os->data.attendanceRoot, { "2026-01-05", 'P' });
         os->data.attendanceRoot = insertAttendance(os->data.attendanceRoot, { "2026-01-12", 'L' });
         os->data.attendanceRoot = insertAttendance(os->data.attendanceRoot, { "2026-01-19", 'P' });
     }
 
-    // DB
     if (CourseNode* db = findCourse(courseRoot, "DB")) {
         db->data.attendanceRoot = insertAttendance(db->data.attendanceRoot, { "2026-01-06", 'P' });
         db->data.attendanceRoot = insertAttendance(db->data.attendanceRoot, { "2026-01-13", 'A' });
         db->data.attendanceRoot = insertAttendance(db->data.attendanceRoot, { "2026-01-20", 'P' });
     }
 
-    // CTDL
+
     if (CourseNode* ds = findCourse(courseRoot, "CTDL")) {
         ds->data.attendanceRoot = insertAttendance(ds->data.attendanceRoot, { "2026-01-07", 'P' });
         ds->data.attendanceRoot = insertAttendance(ds->data.attendanceRoot, { "2026-01-14", 'P' });
@@ -181,7 +176,6 @@ int main() {
 
     bool running = true;
     while (running) {
-        // Role selection is already implemented in AuthService
         auth.selectRole();
         Role role = auth.getRole();
 
@@ -197,8 +191,6 @@ int main() {
             auth.logout();
             break;
         }
-
-        // hub == 1: run module by role
         switch (role) {
             case Role::Admin: {
                 AdminModule admin;
@@ -214,7 +206,7 @@ int main() {
                 break;
             }
             default:
-                cout << "No role selected / invalid role.\n";
+                cout << "invalid role.\n";
                 break;
         }
     }
