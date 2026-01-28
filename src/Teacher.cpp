@@ -18,7 +18,6 @@ static inline string trim(string s) {
 }
 
 static std::vector<string> splitCSVLine(const string& line) {
-    // CSV đơn giản (không handle dấu phẩy trong quotes). Đủ xài bài này.
     std::vector<string> out;
     std::stringstream ss(line);
     string cell;
@@ -64,7 +63,7 @@ static std::unordered_set<string> loadStudentsOfClass(const string& classId) {
 }
 
 static std::unordered_set<string> loadCoursesOfStudents(const std::unordered_set<string>& studentIds) {
-    // enrollments.csv: studentId,courseId
+
     std::unordered_set<string> courseIds;
     std::ifstream f("data/enrollments.csv");
     if (!f.is_open()) return courseIds;
@@ -78,7 +77,6 @@ static std::unordered_set<string> loadCoursesOfStudents(const std::unordered_set
 
         if (first && isHeaderLike(cols, {"studentId","courseId"})) { first = false; continue; }
         first = false;
-
         string sid = cols[0];
         string cid = cols[1];
         if (studentIds.count(sid)) courseIds.insert(cid);
@@ -87,7 +85,6 @@ static std::unordered_set<string> loadCoursesOfStudents(const std::unordered_set
 }
 
 static std::vector<AttendanceRow> loadAttendanceAll() {
-    // attendance.csv: courseId,date,studentId,status
     std::vector<AttendanceRow> rows;
     std::ifstream f("data/attendance.csv");
     if (!f.is_open()) return rows;
@@ -128,7 +125,6 @@ void Teacher::selectClassAndDate(std::string classId, std::string date) {
     selectedClassId = std::move(classId);
     selectedDate = std::move(date);
 
-    // gợi ý course từ enrollments của lớp (nếu có)
     auto students = loadStudentsOfClass(selectedClassId);
     if (students.empty()) {
         std::cout << "No students found for class " << selectedClassId << " (check data/students.csv)\n";
@@ -214,7 +210,6 @@ void Teacher::markAttendance(std::string classId, std::string date) {
         std::transform(st.begin(), st.end(), st.begin(), ::toupper);
         if (!validStatus(st)) st = "P";
 
-        // nếu record đã tồn tại thì update, không thì add mới
         bool updated = false;
         for (auto &r : all) {
             if (r.courseId == courseId && r.date == date && r.studentId == sid) {
@@ -297,7 +292,6 @@ void Teacher::searchStudentAttendance(std::string keyword) {
     std::cout << "\n=== Search results for: " << keyword << " ===\n";
     bool any = false;
     for (auto &r : rows) {
-        // match theo từng field
         if (r.courseId.find(keyword) != string::npos ||
             r.date.find(keyword) != string::npos ||
             r.studentId.find(keyword) != string::npos ||

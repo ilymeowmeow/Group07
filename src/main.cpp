@@ -160,7 +160,7 @@ int main() {
 
     AuthService auth;
 
-    // Login (demo in AuthService.cpp: group07 / 123456)
+    // Login ( group07 / 123456)
     string username, password;
     cout << "Username: ";
     cin >> username;
